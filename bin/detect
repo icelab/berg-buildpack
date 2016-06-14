@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+build_dir = ARGV[0]
+
+if File.exist?("#{build_dir}/apps/main/.assets-commit")
+  puts "berg-buildpack"
+  exit true
+else
+  puts "berg-buildpack: no apps/main/.assets-commit detected"
+  exit false
+end
