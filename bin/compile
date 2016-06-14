@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+build_dir = ARGV[0]
+cache_dir = ARGV[1]
+env_dir   = ARGV[2]
+
+Dir.chdir build_dir do
+  # TODO: fail if commit is blank
+  commit = File.read("apps/main/.assets-commit").to_s.strip
+
+  system "git clone https://github.com/icelab/berg-assets.git apps/main/assets"
+
+  Dir.chdir "apps/main/assets" do
+    system "git reset --hard #{commit}"
+  end
+end
